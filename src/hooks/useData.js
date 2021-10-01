@@ -4,7 +4,7 @@ import { useReducer, useEffect, useContext, createContext } from 'react'
 const initialState = {
     covidData: {},
     lang: 'uk',
-    typeData: `ukraine`
+    typeData: `world`
 }
 
 const DataContext = createContext(initialState)
@@ -24,7 +24,6 @@ export function DataProvider({ children }) {
         })()
     }, [])
     useEffect(() => {
-        console.log(state)
     }, [state])
     return <DataContext.Provider value={[state, dispatch]}>{children}</DataContext.Provider>
 }
@@ -33,6 +32,10 @@ function reducer(state, action) {
     switch (action.type) {
         case `INIT`: {
             return {...state, covidData: action.payload}
+        }
+        case `CHANGE_TYPEDATA`: {
+            console.log(action.payload);
+            return {...state, typeData: action.payload}
         }
         default:
             throw new Error(`Unkwnown action.type! (${action.type})`)
