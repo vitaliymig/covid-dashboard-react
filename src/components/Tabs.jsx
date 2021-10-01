@@ -6,20 +6,16 @@ export default function Tabs() {
 
   return (
     <div>
-      <button
-        onClick={() =>
-          dispatchData({ type: "CHANGE_TYPEDATA", payload: "ukraine" })
-        }
-      >
-        {translations[data.lang].country}
-      </button>
-      <button
-        onClick={() =>
-          dispatchData({ type: "CHANGE_TYPEDATA", payload: "world" })
-        }
-      >
-        {translations[data.lang].all}
-      </button>
+      {Object.keys(data.covidData).map((type) => (
+        <button
+          key={type}
+          onClick={() =>
+            dispatchData({ type: "CHANGE_TYPEDATA", payload: type })
+          }
+        >
+          {translations[data.lang][type]}
+        </button>
+      ))}
     </div>
   );
 }

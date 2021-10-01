@@ -37,6 +37,9 @@ function reducer(state, action) {
             console.log(action.payload);
             return {...state, typeData: action.payload}
         }
+        case `CHANGE_LANG`: {
+            return {...state, lang: action.payload}
+        }
         default:
             throw new Error(`Unkwnown action.type! (${action.type})`)
     }

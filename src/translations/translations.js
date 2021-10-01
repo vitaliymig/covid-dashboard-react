@@ -1,7 +1,7 @@
 export const translations = {
     "en":{
-        "country": "Ukraine",
-        "all": "World",
+        "ukraine": "Ukraine",
+        "world": "World",
         "place": {
             "world": "Country",
             "ukraine": "Region"
@@ -12,8 +12,8 @@ export const translations = {
         "existing": "Existing"
     },
     "uk":{
-        "country": "Україна",
-        "all": "Світ",
+        "ukraine": "Україна",
+        "world": "Світ",
         "place": {
             "world": "Країна",
             "ukraine": "Область"

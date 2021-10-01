@@ -1,49 +1,48 @@
-import { formatDeltaValue } from "../utils/formatters";
+import { formatDeltaValue, sumData } from "../utils/utils";
 import { useData } from "../hooks/useData";
+import { translations } from "../translations/translations";
+
 export default function TotalInformation() {
   const [data] = useData();
+  console.log(data.covidData);
   return (
     <>
       <div>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span>{translations[data.lang].confirmed}: </span>
+        <span>{sumData(data.covidData[data.typeData], "confirmed")}</span>
+        <span>
+          {formatDeltaValue(
+            sumData(data.covidData[data.typeData], "delta_confirmed")
+          )}
+        </span>
       </div>
       <div>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span>{translations[data.lang].deaths}: </span>
+        <span>{sumData(data.covidData[data.typeData], "deaths")}</span>
+        <span>
+          {formatDeltaValue(
+            sumData(data.covidData[data.typeData], "delta_deaths")
+          )}
+        </span>
       </div>
       <div>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span>{translations[data.lang].recovered}: </span>
+        <span>{sumData(data.covidData[data.typeData], "recovered")}</span>
+        <span>
+          {formatDeltaValue(
+            sumData(data.covidData[data.typeData], "delta_recovered")
+          )}
+        </span>
       </div>
       <div>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span>{translations[data.lang].existing}: </span>
+        <span>{sumData(data.covidData[data.typeData], "existing")}</span>
+        <span>
+          {formatDeltaValue(
+            sumData(data.covidData[data.typeData], "delta_existing")
+          )}
+        </span>
       </div>
     </>
   );
 }
-// {
-//     "id": 105,
-//     "label": {
-//         "en": "Vinnytsia",
-//         "uk": "Вінницька область"
-//     },
-//     "country": 4907,
-//     "confirmed": 74881,
-//     "deaths": 1769,
-//     "recovered": 71051,
-//     "existing": 2061,
-//     "suspicion": 59638,
-//     "lat": 48.920517,
-//     "lng": 28.685484,
-//  formatDeltaValue(   "delta_confirmed":) 133,
-//  formatDeltaValue(   "delta_deaths)": 4,
-//  formatDeltaValue(   "delta_recovered"): 46,
-//  formatDeltaValue(   "delta_existing"): 83,
-//  formatDeltaValue(   "delta_suspicio)n": 0
-// }
