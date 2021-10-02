@@ -8,8 +8,8 @@ export function formatDeltaValue(delta) {
     }
 }
   
-export function sumData(array,key) {
-    return !array ? 0 : array.reduce((acc, obj) => {
+export function sumData(array = [],key) {
+    return  array.reduce((acc, obj) => {
         return acc + obj[key]
     },0)
 }

@@ -9,7 +9,8 @@ export const translations = {
         "confirmed": "Confirmed",
         "deaths": "Deaths",
         "recovered": "Recovered",
-        "existing": "Existing"
+        "existing": "Existing",
+        "search_placeholder": "Search by region"
     },
     "uk":{
         "ukraine": "Україна",
@@ -21,6 +22,7 @@ export const translations = {
         "confirmed": "Виявлено",
         "deaths": "Померло",
         "recovered": "Одужало",
-        "existing": "Хворіє"
+        "existing": "Хворіє",
+        "search_placeholder": "Пошук за регіоном"
     }
 }

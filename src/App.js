@@ -1,4 +1,5 @@
 import LangSwitch from "./components/LangSwitch";
+import SearchBar from "./components/SearchBar";
 import Table from "./components/Table";
 import Tabs from "./components/Tabs";
 import TotalInformation from "./components/TotalInformation";
@@ -6,9 +7,10 @@ import TotalInformation from "./components/TotalInformation";
 function App() {
   return (
     <>
-      <LangSwitch/>
+      <LangSwitch />
       <Tabs/>
-      <TotalInformation/>
+      <TotalInformation />
+      <SearchBar/>
       <Table/>
     </>
   );

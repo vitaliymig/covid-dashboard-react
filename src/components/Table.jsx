@@ -1,10 +1,13 @@
+import { useState, useEffect } from "react";
 import { useData } from "../hooks/useData";
 import { translations } from "../translations/translations";
 import TableRow from "./TableRow";
 
 export default function Table() {
   const [data] = useData();
-  // console.log(data.covidData?.[data.typeData], data, data.covidData);
+  const [dataArray, setDataArray] = useState([]);
+
+  useEffect(() => {}, []);
   return (
     <table>
       <thead>

@@ -4,7 +4,8 @@ import { useReducer, useEffect, useContext, createContext } from 'react'
 const initialState = {
     covidData: {},
     lang: 'uk',
-    typeData: `world`
+    typeData: `world`,
+    searchQuery: ''
 }
 
 const DataContext = createContext(initialState)
@@ -39,6 +40,9 @@ function reducer(state, action) {
         }
         case `CHANGE_LANG`: {
             return {...state, lang: action.payload}
+        }
+        case `CHANGE_SEARCH_QUERY`: {
+            return {...state, searchQuery: action.payload}
         }
         default:
             throw new Error(`Unkwnown action.type! (${action.type})`)
