@@ -1,29 +1,53 @@
 import { useState, useEffect } from "react";
 import { useData } from "../hooks/useData";
-import { translations } from "../translations/translations";
+import { serializeQueryStr } from "../utils/utils";
+import TableHead from "./TableHead";
 import TableRow from "./TableRow";
 
 export default function Table() {
   const [data] = useData();
   const [dataArray, setDataArray] = useState([]);
+  useEffect(() => {
+    if (data.covidData[data.typeData]) {
+      let array = [...data.covidData[data.typeData]];
+      if (data.searchQuery) {
+        const query = serializeQueryStr(data.searchQuery);
+        array = array.filter((region) => {
+          return query.every((word) => {
+            return region.label[data.lang].toLowerCase().includes(word);
+          });
+        });
+      }
+      if (data.sortingParams.key) {
+        console.log("sorting");
+        if (data.sortingParams.key === "label") {
+          array.sort((a, b) => {
+            return (
+              a[data.sortingParams.key][data.lang].localeCompare(
+                b[data.sortingParams.key][data.lang]
+              ) * data.sortingParams.order
+            );
+          });
+        } else {
+          array.sort((a, b) => {
+            return (
+              (a[data.sortingParams.key] - b[data.sortingParams.key]) *
+              data.sortingParams.order
+            );
+          });
+        }
+      }
+      setDataArray(array);
+    }
+  }, [data]);
 
-  useEffect(() => {}, []);
   return (
     <table>
-      <thead>
-        <tr>
-          <th>{translations[data.lang].place[data.typeData]}</th>
-          <th>{translations[data.lang].confirmed}</th>
-          <th>{translations[data.lang].deaths}</th>
-          <th>{translations[data.lang].recovered}</th>
-          <th>{translations[data.lang].existing}</th>
-        </tr>
-      </thead>
+      <TableHead />
       <tbody>
-        {data.covidData[data.typeData] &&
-          data.covidData[data.typeData].map((region) => (
-            <TableRow lang={data.lang} key={region.id} data={region}></TableRow>
-          ))}
+        {dataArray.map((region) => (
+          <TableRow lang={data.lang} key={region.id} data={region}></TableRow>
+        ))}
       </tbody>
     </table>
   );

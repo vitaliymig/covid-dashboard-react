@@ -13,3 +13,7 @@ export function sumData(array = [],key) {
         return acc + obj[key]
     },0)
 }
+
+export function serializeQueryStr(str) {
+    return str.toLowerCase().trim().split(' ').filter(word => Boolean(word))
+}

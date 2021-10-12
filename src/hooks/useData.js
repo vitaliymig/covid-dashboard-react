@@ -5,7 +5,11 @@ const initialState = {
     covidData: {},
     lang: 'uk',
     typeData: `world`,
-    searchQuery: ''
+    searchQuery: '',
+    sortingParams: {
+        key: "confirmed",
+        order: -1
+    }
 }
 
 const DataContext = createContext(initialState)
@@ -42,7 +46,16 @@ function reducer(state, action) {
             return {...state, lang: action.payload}
         }
         case `CHANGE_SEARCH_QUERY`: {
-            return {...state, searchQuery: action.payload}
+            if (state.searchQuery !== action.payload) {
+                return {...state, searchQuery: action.payload}
+            }
+            return state
+        }
+        case `CHANGE_SORTING_PARAMS`: {
+            if (JSON.stringify(state.sortingParams) !== JSON.stringify(action.payload)) {
+                return {...state, sortingParams: action.payload}
+            }
+            return state
         }
         default:
             throw new Error(`Unkwnown action.type! (${action.type})`)

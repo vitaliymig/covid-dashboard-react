@@ -4,7 +4,6 @@ import { translations } from "../translations/translations";
 
 export default function SearchBar() {
   const [data, dispatchData] = useData();
-
   const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     dispatchData({ type: `CHANGE_SEARCH_QUERY`, payload: searchValue });

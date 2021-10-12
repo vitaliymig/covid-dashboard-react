@@ -1,4 +1,4 @@
-import { formatDeltaValue } from "../utils/formatters";
+import { formatDeltaValue } from "../utils/utils";
 
 export default function TableRow({ data, lang }) {
   return (
